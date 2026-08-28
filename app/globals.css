@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-roboto-slab: 'Roboto Slab', serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #0c0c0e;
+  color: #e4e4e7;
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0c0c0e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #282834;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #dfb76c;
+}
+
+/* Radial Spotlight Ambient Overlay */
+.radial-spotlight-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle at 50% -10%, rgba(223, 183, 108, 0.12) 0%, rgba(12, 12, 14, 0) 70%);
+}
+
+/* Glass panel background */
+.glass-panel {
+  background: rgba(20, 20, 24, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(40, 40, 52, 0.6);
+}
+
+/* Gold Text Accent */
+.gold-text-glow {
+  color: #dfb76c;
+  text-shadow: 0 0 16px rgba(223, 183, 108, 0.35);
+}
