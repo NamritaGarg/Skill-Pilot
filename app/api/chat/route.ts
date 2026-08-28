@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/server';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { conversationId, messages, model = 'google/gemini-2.0-flash-001', skillDomain = 'Full-Stack Engineering' } = body;
+    const { conversationId, messages, model = 'openai/gpt-4o-mini', skillDomain = 'Full-Stack Engineering' } = body;
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json({ error: 'Messages array is required' }, { status: 400 });

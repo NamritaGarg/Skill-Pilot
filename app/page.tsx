@@ -10,7 +10,7 @@ import { createClient } from '@/lib/supabase/client';
 import { trackEvent } from '@/lib/posthog';
 
 export default function Home() {
-  const [selectedModel, setSelectedModel] = useState<string>('google/gemini-2.0-flash-001');
+  const [selectedModel, setSelectedModel] = useState<string>('openai/gpt-4o-mini');
   const [selectedDomain, setSelectedDomain] = useState<string>('web-dev');
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Array<any>>([]);

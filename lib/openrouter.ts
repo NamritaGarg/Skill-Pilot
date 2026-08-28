@@ -8,14 +8,6 @@ export interface ModelPricing {
 }
 
 export const SUPPORTED_MODELS: Record<string, ModelPricing> = {
-  "google/gemini-2.0-flash-001": {
-    name: "Gemini 2.0 Flash",
-    provider: "Google AI",
-    inputCostPer1M: 0.10,
-    outputCostPer1M: 0.40,
-    maxTokens: 8192,
-    description: "Ultra-fast response with high reasoning capability.",
-  },
   "openai/gpt-4o-mini": {
     name: "GPT-4o Mini",
     provider: "OpenAI",
@@ -23,6 +15,14 @@ export const SUPPORTED_MODELS: Record<string, ModelPricing> = {
     outputCostPer1M: 0.60,
     maxTokens: 4096,
     description: "Affordable multimodal model for everyday tasks.",
+  },
+  "google/gemini-flash-1.5": {
+    name: "Gemini Flash 1.5",
+    provider: "Google AI",
+    inputCostPer1M: 0.075,
+    outputCostPer1M: 0.30,
+    maxTokens: 8192,
+    description: "Ultra-fast response with high reasoning capability.",
   },
   "anthropic/claude-3.5-sonnet": {
     name: "Claude 3.5 Sonnet",
@@ -40,11 +40,11 @@ export const SUPPORTED_MODELS: Record<string, ModelPricing> = {
     maxTokens: 4096,
     description: "Open-weights flagship performance for structured output.",
   },
-  "deepseek/deepseek-r1": {
-    name: "DeepSeek R1",
+  "deepseek/deepseek-chat": {
+    name: "DeepSeek V3",
     provider: "DeepSeek",
-    inputCostPer1M: 0.55,
-    outputCostPer1M: 2.19,
+    inputCostPer1M: 0.14,
+    outputCostPer1M: 0.28,
     maxTokens: 8192,
     description: "Chain-of-thought reasoning model for complex STEM problems.",
   },
@@ -74,7 +74,7 @@ export function calculateCost(modelId: string, promptTokens: number, completionT
 
 export async function callOpenRouter(
   messages: Array<{ role: 'user' | 'assistant' | 'system'; content: string }>,
-  model: string = "google/gemini-2.0-flash-001",
+  model: string = "openai/gpt-4o-mini",
   systemPrompt?: string
 ): Promise<LLMResponseMetrics> {
   const startTime = Date.now();
@@ -152,7 +152,6 @@ export async function callOpenRouter(
     };
   } catch (error) {
     console.error("Error invoking OpenRouter API:", error);
-    // Return structured error message with metrics
     const latencyMs = Date.now() - startTime;
     return {
       content: `⚠️ System Note: Unable to reach OpenRouter API endpoint (${error instanceof Error ? error.message : 'Unknown error'}). Please verify your \`OPENROUTER_API_KEY\` in \`.env.local\`.`,
